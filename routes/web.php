@@ -11,50 +11,28 @@
 |
 */
 
-Route::get('/', 'HomeController@indexr');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('/home/{nama?}',function($nama=" Home")
-// {
-// 	echo "Hello".$nama;
-// });
-
-Route::get('/profile/{nama}',
-	'HomeController@profile');
-
-Route::get('/direct-profile',
-	'HomeController@profileview');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/create_jurusan/{nama}', 'HomeController@create_jurusan');
-Route::get('/update_jurusan/{nama}/{id}', 'HomeController@update_jurusan');
-Route::get('/delete_jurusan/{id}', 'HomeController@delete_jurusan');
-Route::get('/view_jurusan', 'HomeController@view_jurusan');
-
-Route::prefix('siswa')->group(function(){
-Route::get('/all','SiswaController@index');
-Route::get('/add_siswa','SiswaController@add_siswa');
-Route::get('/edit/{id}','SiswaController@edit');
-Route::post('/save','SiswaController@save');
-Route::post('/update','SiswaController@update');
-Route::get('/delete/{id}','SiswaController@delete');
+Route::prefix('gudang')->group(function(){
+	Route::get('all','GudangController@all')->name('all_gudang');
+	Route::get('add','GudangController@add')->name('add_gudang');
+	Route::get('edit/{id}','GudangController@edit')->name('edit_gudang');
+	Route::post('save','GudangController@save')->name('save_gudang');
+	Route::post('update','GudangController@update')->name('update_gudang');
+	Route::get('delete/{id}','GudangController@delete')->name('delete_gudang');
 });
 
-Route::prefix('kelas')->group(function(){
-Route::get('/all','KelasController@index');
-Route::get('/add_kelas','KelasController@add_kelas');
-Route::get('/edit/{id}','KelasController@edit');
-Route::post('/save','KelasController@save');
-Route::post('/update','KelasController@update');
-Route::get('/delete/{id}','KelasController@delete');
-});
-
-Route::prefix('jurusan')->group(function(){
-Route::get('/all','JurusanController@index');
-Route::get('/add_jurusan','JurusanController@add_jurusan');
-Route::get('/edit/{id}','JurusanController@edit');
-Route::post('/save','JurusanController@save');
-Route::post('/update','JurusanController@update');
-Route::get('/delete/{id}','JurusanController@delete');
+Route::prefix('barang')->group(function(){
+	Route::get('all','BarangController@all')->name('all_barang');
+	Route::get('add','BarangController@add')->name('add_barang');
+	Route::get('edit/{id}','BarangController@edit')->name('edit_barang');
+	Route::post('save','BarangController@save')->name('save_barang');
+	Route::post('update','BarangController@update')->name('update_barang');
+	Route::get('delete/{id}','BarangController@delete')->name('delete_barang');
 });
